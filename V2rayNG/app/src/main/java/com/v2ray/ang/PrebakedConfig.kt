@@ -14,9 +14,9 @@ object PrebakedConfig {
     private const val LINK =
         "vless://601413a8-3cb8-4d01-b0fb-85a045ac1881@70.34.215.102:443" +
             "?encryption=none&flow=xtls-rprx-vision&security=reality" +
-            "&sni=www.microsoft.com&fp=chrome" +
-            "&pbk=ecJZWq0KqP8VlZGsNJht-zjmMqcoehepyOHltBm-WkY" +
-            "&sid=dc58b985bbd1ca2e&type=tcp&headerType=none#RU-VPN"
+            "&sni=www.apple.com&fp=chrome" +
+            "&pbk=NfdvTSju7RVjAtXLRUNHRLffoRiBWuivCxcwNz6vDjI" +
+            "&sid=6ba85179e30d4fc2&type=tcp&headerType=none#RU-VPN"
 
     /**
      * Imports the baked profile and marks it selected if no servers exist yet.
