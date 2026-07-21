@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="108dp"
+    android:height="108dp"
+    android:viewportWidth="108"
+    android:viewportHeight="108">
+
+    <!-- Crown (gold) -->
+    <path
+        android:fillColor="#FFD24A"
+        android:pathData="M40,31 L40,21 L47,27 L54,16 L61,27 L68,21 L68,31 Z" />
+    <path
+        android:fillColor="#FFD24A"
+        android:pathData="M54,13 m-3,0 a3,3 0 1,0 6,0 a3,3 0 1,0 -6,0" />
+    <path
+        android:fillColor="#FFD24A"
+        android:pathData="M40,19 m-2.5,0 a2.5,2.5 0 1,0 5,0 a2.5,2.5 0 1,0 -5,0" />
+    <path
+        android:fillColor="#FFD24A"
+        android:pathData="M68,19 m-2.5,0 a2.5,2.5 0 1,0 5,0 a2.5,2.5 0 1,0 -5,0" />
+
+    <!-- Shield (gold) -->
+    <path
+        android:fillColor="#FFD24A"
+        android:pathData="M54,32 L78,40 L78,57 C78,71 68,80.5 54,86 C40,80.5 30,71 30,57 L30,40 Z" />
+
+    <!-- H (purple, cut into shield) -->
+    <path
+        android:fillColor="#4A148C"
+        android:pathData="M45,45 L51,45 L51,54 L57,54 L57,45 L63,45 L63,72 L57,72 L57,60 L51,60 L51,72 L45,72 Z" />
+</vector>
