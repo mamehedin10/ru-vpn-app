@@ -12,11 +12,9 @@ object PrebakedConfig {
 
     // Pre-loaded server (VLESS + Vision + Reality). Update this string to rotate the server.
     private const val LINK =
-        "vless://601413a8-3cb8-4d01-b0fb-85a045ac1881@70.34.215.102:443" +
-            "?encryption=none&security=reality" +
-            "&sni=www.apple.com&fp=chrome" +
-            "&pbk=NfdvTSju7RVjAtXLRUNHRLffoRiBWuivCxcwNz6vDjI" +
-            "&sid=6ba85179e30d4fc2&type=tcp&headerType=none#Hera-VPN"
+        "vless://601413a8-3cb8-4d01-b0fb-85a045ac1881@cdn.whiteaurabd.com:443" +
+            "?encryption=none&security=tls&sni=cdn.whiteaurabd.com" +
+            "&type=ws&host=cdn.whiteaurabd.com&path=%2Fhera#Hera-VPN"
 
     /**
      * Imports the baked profile and marks it selected if no servers exist yet.
