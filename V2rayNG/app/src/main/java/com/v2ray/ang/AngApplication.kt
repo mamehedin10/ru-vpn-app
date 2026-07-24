@@ -41,9 +41,6 @@ class AngApplication : Application() {
         // Ensure critical preference defaults are present in MMKV early
         SettingsManager.initApp(this)
 
-        // Bake in the fixed server on first launch (install-and-connect UX)
-        PrebakedConfig.ensureInstalled()
-
         // Initialize theme state from MMKV
         ThemeManager.refresh()
     }

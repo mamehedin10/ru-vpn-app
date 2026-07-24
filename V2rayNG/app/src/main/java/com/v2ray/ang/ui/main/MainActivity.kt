@@ -97,6 +97,54 @@ class MainActivity : HelperBaseComponentActivity() {
         mainViewModel.onAction(MainAction.Initialize)
 
         checkAndRequestPermission(PermissionType.POST_NOTIFICATIONS) {}
+
+        maybeShowSetupDialog()
+    }
+
+    // First-launch opening screen: prompt the user to paste their Hera VPN link.
+    private fun maybeShowSetupDialog() {
+        lifecycleScope.launch(Dispatchers.IO) {
+            val hasServers = MmkvManager.decodeAllServerList().isNotEmpty()
+            withContext(Dispatchers.Main) {
+                if (!hasServers && !isFinishing) showLinkPasteDialog()
+            }
+        }
+    }
+
+    private fun showLinkPasteDialog() {
+        val input = android.widget.EditText(this).apply {
+            hint = "vless://...  বা  subscription link"
+            setSingleLine(false)
+            maxLines = 4
+        }
+        // Auto-fill from clipboard if it looks like a config/subscription link.
+        val clip = try { Utils.getClipboard(this) } catch (e: Exception) { "" }
+        if (clip.startsWith("vless://") || clip.startsWith("vmess://") ||
+            clip.startsWith("trojan://") || clip.startsWith("ss://") ||
+            clip.startsWith("http://") || clip.startsWith("https://")
+        ) {
+            input.setText(clip)
+        }
+        val pad = (20 * resources.displayMetrics.density).toInt()
+        val container = android.widget.FrameLayout(this).apply {
+            setPadding(pad, pad / 2, pad, 0)
+            addView(input)
+        }
+        android.app.AlertDialog.Builder(this)
+            .setTitle("Hera VPN")
+            .setMessage("আপনার VPN লিংকটি এখানে পেস্ট করুন, তারপর যুক্ত করুন চাপুন।")
+            .setView(container)
+            .setCancelable(false)
+            .setPositiveButton("যুক্ত করুন") { _, _ ->
+                val text = input.text?.toString()?.trim().orEmpty()
+                if (text.isNotEmpty()) {
+                    mainViewModel.onAction(MainAction.ImportBatchConfig(text))
+                } else {
+                    toast(R.string.toast_failure)
+                }
+            }
+            .setNegativeButton("পরে", null)
+            .show()
     }
 
     @Composable
