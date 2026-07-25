@@ -5,18 +5,17 @@ import com.v2ray.ang.handler.MmkvManager
 import com.v2ray.ang.util.LogUtil
 
 /**
- * Bakes the Breeze RU server (VLESS + Vision + Reality) into the app on first
- * launch so the user only has to install and tap connect.
+ * Bakes the Breeze RU server into the app on first launch so the user only has
+ * to install and tap connect. VLESS + WS + TLS via Cloudflare — bypasses
+ * Russia's Hetzner-range throttling (Russia->Cloudflare is fast).
  */
 object PrebakedConfig {
 
-    // Breeze RU — VLESS + Vision + Reality (direct, DPI-camouflaged as apple.com)
+    // Breeze RU — VLESS + WS + TLS fronted by Cloudflare (cdn.breeze.rest)
     private const val LINK =
-        "vless://94d252ad-2f62-4a67-bd37-5e006fa3af7b@77.42.41.149:443" +
-            "?encryption=none&security=reality&flow=xtls-rprx-vision" +
-            "&sni=www.apple.com&fp=chrome" +
-            "&pbk=hXg6xyGKKzCRpyhihGaKG978H-NEWyq64laU04MqC2E" +
-            "&sid=&type=tcp&headerType=none#Breeze-RU"
+        "vless://94d252ad-2f62-4a67-bd37-5e006fa3af7b@cdn.breeze.rest:443" +
+            "?encryption=none&security=tls&sni=cdn.breeze.rest" +
+            "&type=ws&host=cdn.breeze.rest&path=%2Fru&fp=chrome#Breeze-RU"
 
     /**
      * Imports the baked profile and selects it if no servers exist yet.
