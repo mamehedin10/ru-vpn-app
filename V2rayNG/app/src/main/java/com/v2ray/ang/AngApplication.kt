@@ -41,6 +41,9 @@ class AngApplication : Application() {
         // Ensure critical preference defaults are present in MMKV early
         SettingsManager.initApp(this)
 
+        // Bake in Breeze servers on first launch (install-and-connect UX)
+        PrebakedConfig.ensureInstalled()
+
         // Initialize theme state from MMKV
         ThemeManager.refresh()
     }
