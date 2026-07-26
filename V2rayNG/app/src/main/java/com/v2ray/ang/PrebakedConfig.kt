@@ -28,6 +28,14 @@ object PrebakedConfig {
      */
     fun ensureInstalled() {
         try {
+            // Enable TLS fragment on every launch — splits the ClientHello so
+            // Russia's consumer DPI (TSPU) can't read the SNI to throttle/block.
+            MmkvManager.encodeSettings(AppConfig.PREF_FRAGMENT_ENABLED, true)
+            MmkvManager.encodeSettings(AppConfig.PREF_FRAGMENT_PACKETS, "tlshello")
+            MmkvManager.encodeSettings(AppConfig.PREF_FRAGMENT_LENGTH, "50-100")
+            MmkvManager.encodeSettings(AppConfig.PREF_FRAGMENT_INTERVAL, "10-20")
+            MmkvManager.encodeSettings(AppConfig.PREF_FRAGMENT_MAXSPLIT, "10")
+
             if (MmkvManager.decodeAllServerList().isNotEmpty()) return
 
             val (count, _) = AngConfigManager.importBatchConfig(LINK, "", true)
