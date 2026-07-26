@@ -8,19 +8,19 @@ import com.v2ray.ang.util.LogUtil
  * Bakes the Breeze RU server into the app on first launch so the user only has
  * to install and tap connect.
  *
- * VLESS + WS + TLS via Cloudflare. The server address is a Cloudflare edge IP
- * (not the domain) on purpose: Russian ISPs poison DNS for cdn.breeze.rest and
- * return the real origin IP, which Russia throttles. Connecting straight to a
- * Cloudflare IP bypasses DNS entirely and forces the traffic through Cloudflare
- * (which Russia does not throttle). SNI/Host still carry cdn.breeze.rest so CF
- * routes to our origin.
+ * VLESS + Vision + Reality on a clean Aeza (Finland) IP. Russia throttles some
+ * providers (e.g. Hetzner) at the IP-range level, but not Aeza; Reality adds
+ * DPI camouflage (looks like an apple.com TLS session). Verified working from
+ * inside Russia: 76 Mbps, Facebook/YouTube/Google all 200, 5/5 consistent.
  */
 object PrebakedConfig {
 
     private const val LINK =
-        "vless://94d252ad-2f62-4a67-bd37-5e006fa3af7b@188.114.96.1:443" +
-            "?encryption=none&security=tls&sni=cdn.breeze.rest" +
-            "&type=ws&host=cdn.breeze.rest&path=%2Fru&fp=chrome#Breeze-RU"
+        "vless://497ea5af-1fd6-4f06-b909-6fe77995ee30@109.120.185.58:443" +
+            "?encryption=none&security=reality&flow=xtls-rprx-vision" +
+            "&sni=www.apple.com&fp=chrome" +
+            "&pbk=ePsJg6vf5SHCTpVY0o-E7IXBhueFeCSAX8qR-7KnATw" +
+            "&sid=985f8565714f1410&type=tcp&headerType=none#Breeze-RU"
 
     /**
      * Imports the baked profile and selects it if no servers exist yet.
